@@ -363,7 +363,14 @@ export default function SimpleChatBot({ whatsappNumber }: SimpleChatBotProps) {
               placeholder={question.placeholder}
               value={value}
               onChange={(e) => handleInputChange(question.id, e.target.value)}
+              onKeyDown={(e) => {
+                // Asegurar que la tecla espacio funcione correctamente
+                if (e.key === ' ') {
+                  e.stopPropagation();
+                }
+              }}
               className={baseInputClasses}
+              style={{ whiteSpace: 'pre-wrap' }}
             />
             {hasError && <p className="text-red-500 text-xs">{errors[question.id]}</p>}
           </div>
